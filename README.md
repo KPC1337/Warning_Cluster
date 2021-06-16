@@ -1,2 +1,2 @@
 # Warning_Cluster
- Automotive industr embedded design internship
+ Automotive industry embedded design internship
