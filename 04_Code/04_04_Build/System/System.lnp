@@ -1,4 +1,3 @@
-"STARTUP.obj",
 ".\SysTimer.obj",
 ".\Telltale_Driver.obj" 
 TO "System" 

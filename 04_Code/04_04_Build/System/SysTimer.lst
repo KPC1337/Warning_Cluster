@@ -1,95 +1,111 @@
-C51 COMPILER V8.18   SYSTIMER                                                              06/16/2021 15:05:54 PAGE 1   
+C51 COMPILER V8.18   SYSTIMER                                                              06/16/2021 21:53:29 PAGE 1   
 
 
 C51 COMPILER V8.18, COMPILATION OF MODULE SYSTIMER
 OBJECT MODULE PLACED IN .\SysTimer.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\04_02_Source\System\SysTimer.c BROWSE DEBUG OBJECTEXTEND PRINT(.\SysT
-                    -imer.lst) OBJECT(.\SysTimer.obj)
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\04_02_Source\SysTimer\SysTimer.c BROWSE INCDIR(..\..\04_02_Source;..\
+                    -..\04_02_Source\SysTimer;..\..\04_02_Source\Telltale_Driver) DEBUG OBJECTEXTEND PRINT(.\SysTimer.lst) OBJECT(.\SysTimer.
+                    -obj)
 
 line level    source
 
-   1          #include "Common.h"
-   2          #include "Telltale.h"
-   3          
-   4          void Task_1(void);
-   5          void Task_2(void);
-   6          void Task_3(void);
-   7          void Event(void (*event_TBL[])(void));
-   8          
-   9          U1 u1_BUF_1MS;
-  10          F1 St_Temp;
-  11          
-  12          void (*const MS10_TBL[])(void) = {&Task_1,&Task_2,&Task_3,NULL};
+   1          #include"Telltale_Driver.prm"   
+   2          
+   3          void one_Second_Timer(void);
+   4          void read_P1(void);
+   5          void Task_3(void);
+   6          void Event(void (*event_TBL[])(void));
+   7          
+   8          U1 u1_BUF_1MS;
+   9          F1 St_Temp;
+  10          U1 u1_PrtSts;
+  11          U1 u1_1Sec;
+  12          
   13          
-  14          int main(void)
-  15          { 
-  16   1              u1_BUF_1MS = (U1)OFF;
-  17   1              St_Temp.Bit.b00 = ON;
-  18   1              TT_Dr_Init();
-  19   1              
-  20   1              TMOD = 0x01;
-  21   1              IE   = 0x82;
-  22   1              TL0  = 0xD8;
-  23   1          TH0  = 0xF0;
-  24   1              TR0  = 1; 
-  25   1              
-  26   1              while(1)
-  27   1              {
-  28   2                if(St_Temp.Bit.b00 == ON)
-  29   2                {
-  30   3                        Event(MS10_TBL);
-  31   3                        St_Temp.Bit.b00 = OFF;
-  32   3                        EA = 1;
-  33   3                }     
-  34   2              }       
-  35   1      }
-  36          
-  37          void Timer0(void) interrupt 1
-  38          {
-  39   1        St_Temp.Bit.b00 = ON; 
-  40   1        TF0 = 0; 
-  41   1        TL0  = 0x18;
-  42   1        TH0  = 0xFC;
-  43   1        EA = 0;
-  44   1      }
-  45          
-  46          void Task_1(void)
-  47          {
-  48   1              TT_Dr_Write(P1);
-  49   1      
-  50   1      }
-  51          
-  52          void Task_2(void)
-  53          {
-  54   1                                      
-C51 COMPILER V8.18   SYSTIMER                                                              06/16/2021 15:05:54 PAGE 2   
+  14          void (*const MS10_TBL[])(void) = {one_Second_Timer,read_P1,Task_3,NULL};
+  15          
+  16          int main(void)
+  17          { 
+  18   1              u1_BUF_1MS = (U1)OFF;
+  19   1              St_Temp.Bit.b00 = ON;
+  20   1              u1_PrtSts = (U1)0xFF;
+  21   1              u1_1Sec = (U1)0;
+  22   1              TT_Dr_Init();
+  23   1              
+  24   1              TMOD = 0x01;
+  25   1              IE   = 0x82;
+  26   1              TL0  = 0xF0;
+  27   1          TH0  = 0xD8;
+  28   1              TR0  = 1; 
+  29   1              
+  30   1              while(1)
+  31   1              {
+  32   2                if(St_Temp.Bit.b00 == ON)
+  33   2                {
+  34   3                        Event(MS10_TBL);
+  35   3                        St_Temp.Bit.b00 = OFF;
+  36   3                        EA = 1;
+  37   3                }     
+  38   2              }       
+  39   1      }
+  40          
+  41          void Timer0(void) interrupt 1
+  42          {
+  43   1        St_Temp.Bit.b00 = ON; 
+  44   1        TF0 = 0; 
+  45   1        TL0  = 0xF0;
+  46   1        TH0  = 0xD8;
+  47   1        EA = 0;
+  48   1      }
+  49          
+  50          void one_Second_Timer(void)
+  51          {
+  52   1              u1_1Sec = u1_1Sec+1;
+  53   1              if(u1_1Sec >= 100)
+C51 COMPILER V8.18   SYSTIMER                                                              06/16/2021 21:53:29 PAGE 2   
 
-  55   1      }
-  56          
-  57          void Task_3(void)
-  58          {
-  59   1      
-  60   1      }
-  61          
-  62          
-  63          
-  64          void Event(void (*const *MS10_TBL)(void))
-  65          {
-  66   1              for(; *MS10_TBL != 0 ;){
-  67   2                      (*MS10_TBL)();
-  68   2                      MS10_TBL++;
-  69   2              }
-  70   1      }
-  71          
-  72          
+  54   1              {
+  55   2              //P1_0 = ~P1_0;
+  56   2              u1_1Sec = 0;
+  57   2              }
+  58   1      }
+  59          
+  60          void read_P1(void)
+  61          {
+  62   1          U1 u1_Port;
+  63   1              u1_Port = P1;
+  64   1              if(u1_Port != u1_PrtSts){
+  65   2                      TT_Dr_Write(P1);
+  66   2              }
+  67   1              u1_PrtSts = u1_Port;
+  68   1                                              
+  69   1      }
+  70          
+  71          void Task_3(void)
+  72          {     
+  73   1      
+  74   1      
+  75   1      }
+  76          
+  77          
+  78          
+  79          void Event(void (*const *MS10_TBL)(void))
+  80          {
+  81   1              for(; *MS10_TBL != 0 ;){
+  82   2                      (*MS10_TBL)();
+  83   2                      MS10_TBL++;
+  84   2              }
+  85   1      }
+  86          
+  87          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    129    ----
+   CODE SIZE        =    160    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     14       3
+   DATA SIZE        =     16       4
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

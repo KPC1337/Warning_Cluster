@@ -1,1 +1,1 @@
-"..\..\04_02_Source\System\Telltale_Driver.c" BROWSE DEBUG OBJECTEXTEND PRINT(.\Telltale_Driver.lst) OBJECT(.\Telltale_Driver.obj)
+"..\..\04_02_Source\Telltale_Driver\Telltale_Driver.c" BROWSE INCDIR(..\..\04_02_Source;..\..\04_02_Source\SysTimer;..\..\04_02_Source\Telltale_Driver) DEBUG OBJECTEXTEND PRINT(.\Telltale_Driver.lst) OBJECT(.\Telltale_Driver.obj)

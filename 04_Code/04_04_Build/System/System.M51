@@ -1,27 +1,27 @@
-BL51 BANKED LINKER/LOCATER V6.20                                                        06/16/2021  15:13:31  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.20                                                        06/16/2021  21:54:38  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.20, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, .\SysTimer.obj, .\Telltale_Driver.obj TO System RAMSIZE (256)
+C:\KEIL\C51\BIN\BL51.EXE .\SysTimer.obj, .\Telltale_Driver.obj TO System RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
 
 
 INPUT MODULES INCLUDED:
-  STARTUP.obj (?C_STARTUP)
   .\SysTimer.obj (SYSTIMER)
   .\Telltale_Driver.obj (TELLTALE_DRIVER)
-  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?ICALL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDXDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDPDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDCODE)
 
 
-LINK MAP OF MODULE:  System (?C_STARTUP)
+LINK MAP OF MODULE:  System (SYSTIMER)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -29,9 +29,9 @@ LINK MAP OF MODULE:  System (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     000EH     UNIT         ?DT?SYSTIMER
-            DATA    0016H     0003H     UNIT         _DATA_GROUP_
-            IDATA   0019H     0001H     UNIT         ?STACK
+            DATA    0008H     0010H     UNIT         ?DT?SYSTIMER
+            DATA    0018H     0003H     UNIT         _DATA_GROUP_
+            IDATA   001BH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
@@ -40,26 +40,26 @@ LINK MAP OF MODULE:  System (?C_STARTUP)
                     000EH     07F2H                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
             CODE    088CH     004DH     UNIT         ?C?LIB_CODE
-            CODE    08D9H     003DH     UNIT         ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
-            CODE    0916H     0035H     UNIT         ?PR?MAIN?SYSTIMER
-            CODE    094BH     0024H     UNIT         ?PR?_EVENT?SYSTIMER
-            CODE    096FH     0021H     UNIT         ?PR?TIMER0?SYSTIMER
-            CODE    0990H     000FH     UNIT         ?C_INITSEG
-            CODE    099FH     0007H     UNIT         ?PR?TT_DR_INIT?TELLTALE_DRIVER
-            CODE    09A6H     0005H     UNIT         ?PR?TASK_1?SYSTIMER
-            CODE    09ABH     0001H     UNIT         ?PR?TASK_2?SYSTIMER
-            CODE    09ACH     0001H     UNIT         ?PR?TASK_3?SYSTIMER
+            CODE    08D9H     003BH     UNIT         ?PR?MAIN?SYSTIMER
+            CODE    0914H     0024H     UNIT         ?PR?_EVENT?SYSTIMER
+            CODE    0938H     0021H     UNIT         ?PR?TIMER0?SYSTIMER
+            CODE    0959H     0021H     UNIT         ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
+            CODE    097AH     0012H     UNIT         ?PR?READ_P1?SYSTIMER
+            CODE    098CH     000FH     UNIT         ?C_INITSEG
+            CODE    099BH     000DH     UNIT         ?PR?ONE_SECOND_TIMER?SYSTIMER
+            CODE    09A8H     0007H     UNIT         ?PR?TT_DR_INIT?TELLTALE_DRIVER
+            CODE    09AFH     0001H     UNIT         ?PR?TASK_3?SYSTIMER
 
 
 
-OVERLAY MAP OF MODULE:   System (?C_STARTUP)
+OVERLAY MAP OF MODULE:   System (SYSTIMER)
 
 
 SEGMENT                                    DATA_GROUP 
   +--> CALLED SEGMENT                    START    LENGTH
 --------------------------------------------------------
 ?C_C51STARTUP                            -----    -----
-BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  15:13:31  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  21:54:38  PAGE 2
 
 
   +--> ?PR?MAIN?SYSTIMER
@@ -69,136 +69,119 @@ SEGMENT                                    DATA_GROUP
   +--> ?PR?TT_DR_INIT?TELLTALE_DRIVER
   +--> ?PR?_EVENT?SYSTIMER
 
-?PR?_EVENT?SYSTIMER                      0016H    0003H
+?PR?_EVENT?SYSTIMER                      0018H    0003H
 
 ?C_INITSEG                               -----    -----
-  +--> ?PR?TASK_1?SYSTIMER
-  +--> ?PR?TASK_2?SYSTIMER
+  +--> ?PR?ONE_SECOND_TIMER?SYSTIMER
+  +--> ?PR?READ_P1?SYSTIMER
   +--> ?PR?TASK_3?SYSTIMER
 
-?PR?TASK_1?SYSTIMER                      -----    -----
+?PR?READ_P1?SYSTIMER                     0018H    0001H
   +--> ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
 
 
 
-SYMBOL TABLE OF MODULE:  System (?C_STARTUP)
+SYMBOL TABLE OF MODULE:  System (SYSTIMER)
 
   VALUE           TYPE          NAME
   ----------------------------------
 
-  -------         MODULE        ?C_STARTUP
-  C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0019H         SEGMENT       ?STACK
-  C:0000H         PUBLIC        ?C_STARTUP
-  D:00E0H         SYMBOL        ACC
-  D:00F0H         SYMBOL        B
-  D:0083H         SYMBOL        DPH
-  D:0082H         SYMBOL        DPL
-  N:0000H         SYMBOL        IBPSTACK
-  N:0100H         SYMBOL        IBPSTACKTOP
-  N:0080H         SYMBOL        IDATALEN
-  C:0803H         SYMBOL        IDATALOOP
-  N:0000H         SYMBOL        PBPSTACK
-  N:0100H         SYMBOL        PBPSTACKTOP
-  N:0000H         SYMBOL        PDATALEN
-  N:0000H         SYMBOL        PDATASTART
-  N:0000H         SYMBOL        PPAGE
-  N:0000H         SYMBOL        PPAGEENABLE
-  D:00A0H         SYMBOL        PPAGE_SFR
-  D:0081H         SYMBOL        SP
-  C:0800H         SYMBOL        STARTUP1
-  N:0000H         SYMBOL        XBPSTACK
-  N:0000H         SYMBOL        XBPSTACKTOP
-  N:0000H         SYMBOL        XDATALEN
-  N:0000H         SYMBOL        XDATASTART
-  C:0000H         LINE#         126
-  C:0800H         LINE#         133
-  C:0802H         LINE#         134
-  C:0803H         LINE#         135
-  C:0804H         LINE#         136
-  C:0806H         LINE#         185
-  C:0809H         LINE#         196
-  -------         ENDMOD        ?C_STARTUP
-BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  15:13:31  PAGE 3
-
-
-
   -------         MODULE        SYSTIMER
   C:0000H         SYMBOL        _ICE_DUMMY_
+  C:097AH         PUBLIC        read_P1
   D:0090H         PUBLIC        P1
-  C:094BH         PUBLIC        _Event
+  C:0914H         PUBLIC        _Event
   B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
   D:0008H         PUBLIC        u1_BUF_1MS
-  C:09A6H         PUBLIC        Task_1
-  C:0916H         PUBLIC        main
-  C:09ABH         PUBLIC        Task_2
-  C:09ACH         PUBLIC        Task_3
-  C:096FH         PUBLIC        Timer0
+  C:08D9H         PUBLIC        main
+  C:09AFH         PUBLIC        Task_3
+  C:0938H         PUBLIC        Timer0
   D:0089H         PUBLIC        TMOD
   D:0009H         PUBLIC        St_Temp
   D:000AH         PUBLIC        MS10_TBL
   B:0088H.5       PUBLIC        TF0
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
+  D:0016H         PUBLIC        u1_1Sec
   B:0088H.4       PUBLIC        TR0
+  C:099BH         PUBLIC        one_Second_Timer
+  D:0017H         PUBLIC        u1_PrtSts
   -------         PROC          MAIN
-  C:0916H         LINE#         14
-  C:0916H         LINE#         15
-  C:0916H         LINE#         16
-  C:0919H         LINE#         17
-  C:0920H         LINE#         18
-  C:0923H         LINE#         20
-  C:0926H         LINE#         21
-  C:0929H         LINE#         22
-  C:092CH         LINE#         23
-  C:092FH         LINE#         24
-  C:0931H         LINE#         26
-  C:0931H         LINE#         27
-  C:0931H         LINE#         28
-  C:0937H         LINE#         29
-  C:0937H         LINE#         30
-  C:0940H         LINE#         31
-  C:0947H         LINE#         32
-  C:0949H         LINE#         33
-  C:0949H         LINE#         34
+  C:08D9H         LINE#         16
+  C:08D9H         LINE#         17
+  C:08D9H         LINE#         18
+  C:08DCH         LINE#         19
+  C:08E3H         LINE#         20
+  C:08E6H         LINE#         21
+  C:08E9H         LINE#         22
+  C:08ECH         LINE#         24
+  C:08EFH         LINE#         25
+  C:08F2H         LINE#         26
+  C:08F5H         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  21:54:38  PAGE 3
+
+
+  C:08F8H         LINE#         28
+  C:08FAH         LINE#         30
+  C:08FAH         LINE#         31
+  C:08FAH         LINE#         32
+  C:0900H         LINE#         33
+  C:0900H         LINE#         34
+  C:0909H         LINE#         35
+  C:0910H         LINE#         36
+  C:0912H         LINE#         37
+  C:0912H         LINE#         38
   -------         ENDPROC       MAIN
   -------         PROC          TIMER0
-  C:096FH         LINE#         37
-  C:0978H         LINE#         39
-  C:097FH         LINE#         40
-  C:0981H         LINE#         41
-  C:0984H         LINE#         42
-  C:0987H         LINE#         43
-  C:0989H         LINE#         44
+  C:0938H         LINE#         41
+  C:0941H         LINE#         43
+  C:0948H         LINE#         44
+  C:094AH         LINE#         45
+  C:094DH         LINE#         46
+  C:0950H         LINE#         47
+  C:0952H         LINE#         48
   -------         ENDPROC       TIMER0
-  -------         PROC          TASK_1
-  C:09A6H         LINE#         46
-  C:09A6H         LINE#         47
-  C:09A6H         LINE#         48
-  -------         ENDPROC       TASK_1
-  -------         PROC          TASK_2
-  C:09ABH         LINE#         52
-BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  15:13:31  PAGE 4
-
-
-  C:09ABH         LINE#         53
-  C:09ABH         LINE#         55
-  -------         ENDPROC       TASK_2
+  -------         PROC          ONE_SECOND_TIMER
+  C:099BH         LINE#         50
+  C:099BH         LINE#         51
+  C:099BH         LINE#         52
+  C:099DH         LINE#         53
+  C:09A4H         LINE#         54
+  C:09A4H         LINE#         56
+  C:09A7H         LINE#         57
+  C:09A7H         LINE#         58
+  -------         ENDPROC       ONE_SECOND_TIMER
+  -------         PROC          READ_P1
+  -------         DO            
+  D:0018H         SYMBOL        u1_Port
+  -------         ENDDO         
+  C:097AH         LINE#         60
+  C:097AH         LINE#         61
+  C:097AH         LINE#         63
+  C:097DH         LINE#         64
+  C:0983H         LINE#         65
+  C:0988H         LINE#         66
+  C:0988H         LINE#         67
+  C:098BH         LINE#         69
+  -------         ENDPROC       READ_P1
   -------         PROC          TASK_3
-  C:09ACH         LINE#         57
-  C:09ACH         LINE#         58
-  C:09ACH         LINE#         60
+  C:09AFH         LINE#         71
+  C:09AFH         LINE#         72
+  C:09AFH         LINE#         75
   -------         ENDPROC       TASK_3
   -------         PROC          _EVENT
-  D:0016H         SYMBOL        MS10_TBL
-  C:094BH         LINE#         64
-  C:0951H         LINE#         65
-  C:0951H         LINE#         66
-  C:095EH         LINE#         67
-  C:0961H         LINE#         68
-  C:096CH         LINE#         69
-  C:096EH         LINE#         70
+  D:0018H         SYMBOL        MS10_TBL
+  C:0914H         LINE#         79
+  C:091AH         LINE#         80
+  C:091AH         LINE#         81
+  C:0927H         LINE#         82
+  C:092AH         LINE#         83
+  C:0935H         LINE#         84
+  C:0937H         LINE#         85
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  21:54:38  PAGE 4
+
+
   -------         ENDPROC       _EVENT
   -------         ENDMOD        SYSTIMER
 
@@ -207,41 +190,33 @@ SYMBOL TABLE OF MODULE:  System (?C_STARTUP)
   B:00A0H.0       PUBLIC        P2_0
   B:00A0H.1       PUBLIC        P2_1
   B:00A0H.2       PUBLIC        P2_2
-  C:08D9H         PUBLIC        _TT_Dr_Write
-  C:099FH         PUBLIC        TT_Dr_Init
+  C:0959H         PUBLIC        _TT_Dr_Write
+  C:09A8H         PUBLIC        TT_Dr_Init
   -------         PROC          TT_DR_INIT
-  C:099FH         LINE#         4
-  C:099FH         LINE#         5
-  C:099FH         LINE#         6
-  C:09A1H         LINE#         7
-  C:09A3H         LINE#         8
-  C:09A5H         LINE#         9
+  C:09A8H         LINE#         3
+  C:09A8H         LINE#         4
+  C:09A8H         LINE#         5
+  C:09AAH         LINE#         6
+  C:09ACH         LINE#         7
+  C:09AEH         LINE#         8
   -------         ENDPROC       TT_DR_INIT
   -------         PROC          _TT_DR_WRITE
   D:0007H         SYMBOL        TTData
   -------         DO            
   D:0006H         SYMBOL        s1_i
-  D:0006H         SYMBOL        u1_i
-  D:0004H         SYMBOL        u1_j
   -------         ENDDO         
-  C:08D9H         LINE#         11
-  C:08D9H         LINE#         12
-  C:08D9H         LINE#         15
-  C:08DBH         LINE#         16
-  C:08DDH         LINE#         17
-  C:08DDH         LINE#         18
-  C:08EAH         LINE#         19
-  C:08ECH         LINE#         20
-  C:08EEH         LINE#         21
-  C:08F7H         LINE#         22
-  C:08F9H         LINE#         24
-  C:08FCH         LINE#         25
-  C:090AH         LINE#         26
-  C:0915H         LINE#         28
+  C:0959H         LINE#         10
+  C:0959H         LINE#         11
+  C:0959H         LINE#         13
+  C:095BH         LINE#         14
+  C:095DH         LINE#         15
+  C:095DH         LINE#         16
+  C:096AH         LINE#         17
+  C:096CH         LINE#         18
+  C:096EH         LINE#         19
+  C:0977H         LINE#         20
+  C:0979H         LINE#         22
   -------         ENDPROC       _TT_DR_WRITE
-BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  15:13:31  PAGE 5
-
-
   -------         ENDMOD        TELLTALE_DRIVER
 
   -------         MODULE        ?C?PLDPTR
@@ -264,14 +239,17 @@ SYMBOL TABLE OF MODULE:  System (?C_STARTUP)
   -------         MODULE        ?C?PLDPDATA
   C:08C4H         PUBLIC        ?C?PLDPDATA
   -------         ENDMOD        ?C?PLDPDATA
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/16/2021  21:54:38  PAGE 5
+
+
 
   -------         MODULE        ?C?PLDCODE
   C:08CDH         PUBLIC        ?C?PLDCODE
   -------         ENDMOD        ?C?PLDCODE
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00E5H BYTE (11%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00D9H BYTE (10%) *
 ******************************************************************************
 
-Program Size: data=26.0 xdata=0 code=435
+Program Size: data=28.0 xdata=0 code=438
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

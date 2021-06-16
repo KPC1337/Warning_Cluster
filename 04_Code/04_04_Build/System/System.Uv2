@@ -3,11 +3,11 @@
 
 Target (Target 1), 0x0000 // Tools: 'MCS-51'
 
-Group (Source Group 1)
+Group (SysTimer)
+Group (Telltale_Driver)
 
-File 1,2,<.\STARTUP.A51><STARTUP.A51>
-File 1,1,<..\..\04_02_Source\System\SysTimer.c><SysTimer.c>
-File 1,1,<..\..\04_02_Source\System\Telltale_Driver.c><Telltale_Driver.c>
+File 1,1,<..\..\04_02_Source\SysTimer\SysTimer.c><SysTimer.c>
+File 2,1,<..\..\04_02_Source\Telltale_Driver\Telltale_Driver.c><Telltale_Driver.c>
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -62,7 +62,7 @@ Options 1,0,0  // Target 'Target 1'
  XT51FL=0
  CBANKS5=0
  XBANKS5=0
- RCB51 { 0,0,0,0,0,0,0,1,0 }
+ RCB51 { 0,0,0,0,0,255,255,0,0 }
  RXB51 { 0,0,0,0,0,0,0,0,0 }
  OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
@@ -76,7 +76,7 @@ Options 1,0,0  // Target 'Target 1'
  C51MSC ()
  C51DEF ()
  C51UDF ()
- INCC5 ()
+ INCC5 (..\..\04_02_Source;..\..\04_02_Source\SysTimer;..\..\04_02_Source\Telltale_Driver)
  AX51FL=4
  AX51MSC ()
  AX51SET ()

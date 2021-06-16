@@ -1,1 +1,1 @@
-"..\..\04_02_Source\System\SysTimer.c" BROWSE DEBUG OBJECTEXTEND PRINT(.\SysTimer.lst) OBJECT(.\SysTimer.obj)
+"..\..\04_02_Source\SysTimer\SysTimer.c" BROWSE INCDIR(..\..\04_02_Source;..\..\04_02_Source\SysTimer;..\..\04_02_Source\Telltale_Driver) DEBUG OBJECTEXTEND PRINT(.\SysTimer.lst) OBJECT(.\SysTimer.obj)
