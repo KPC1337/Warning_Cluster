@@ -1,0 +1,261 @@
+BL51 BANKED LINKER/LOCATER V6.20                                                        06/15/2021  18:32:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.20, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, Telltale_Driver.obj TO Telltale_Driver RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  Telltale_Driver.obj (TELLTALE_DRIVER)
+
+
+LINK MAP OF MODULE:  Telltale_Driver (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?TT_DR_LIGHTSHOW?TELLTALE_DRIVER
+            DATA    000AH     0001H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0063H     UNIT         ?PR?TT_DR_LIGHTSHOW?TELLTALE_DRIVER
+            CODE    0863H     0031H     UNIT         ?PR?_DELAY?TELLTALE_DRIVER
+            CODE    0894H     0021H     UNIT         ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
+            CODE    08B5H     0013H     UNIT         ?PR?MAIN?TELLTALE_DRIVER
+            CODE    08C8H     000CH     UNIT         ?C_C51STARTUP
+            CODE    08D4H     0007H     UNIT         ?PR?TT_DR_INIT?TELLTALE_DRIVER
+            CODE    08DBH     0005H     UNIT         ?PR?TT_DR_ALLTTON?TELLTALE_DRIVER
+            CODE    08E0H     0005H     UNIT         ?PR?TT_DR_ALLTTOFF?TELLTALE_DRIVER
+
+
+
+OVERLAY MAP OF MODULE:   Telltale_Driver (?C_STARTUP)
+
+
+SEGMENT                                       DATA_GROUP 
+  +--> CALLED SEGMENT                       START    LENGTH
+-----------------------------------------------------------
+?C_C51STARTUP                               -----    -----
+  +--> ?PR?MAIN?TELLTALE_DRIVER
+
+?PR?MAIN?TELLTALE_DRIVER                    000AH    0001H
+  +--> ?PR?TT_DR_INIT?TELLTALE_DRIVER
+  +--> ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
+  +--> ?PR?_DELAY?TELLTALE_DRIVER
+
+?PR?_DELAY?TELLTALE_DRIVER                  -----    -----
+  +--> ?PR?_TT_DR_WRITE?TELLTALE_DRIVER
+
+
+
+SYMBOL TABLE OF MODULE:  Telltale_Driver (?C_STARTUP)
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/15/2021  18:32:24  PAGE 2
+
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:08C8H         SEGMENT       ?C_C51STARTUP
+  I:000BH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08CBH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08C8H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08C8H         LINE#         133
+  C:08CAH         LINE#         134
+  C:08CBH         LINE#         135
+  C:08CCH         LINE#         136
+  C:08CEH         LINE#         185
+  C:08D1H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        TELLTALE_DRIVER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0870H         SYMBOL        _delay
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00A0H.2       PUBLIC        P2_2
+  C:08E0H         SYMBOL        TT_Dr_allTTOff
+  C:08B5H         PUBLIC        main
+  C:0894H         SYMBOL        _TT_Dr_Write
+  D:0089H         PUBLIC        TMOD
+  C:08D4H         SYMBOL        TT_Dr_Init
+  C:08DBH         SYMBOL        TT_Dr_allTTOn
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  C:0800H         SYMBOL        TT_Dr_Lightshow
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/15/2021  18:32:24  PAGE 3
+
+
+  -------         PROC          MAIN
+  -------         DO            
+  D:000AH         SYMBOL        u1_Port
+  -------         ENDDO         
+  C:08B5H         LINE#         25
+  C:08B5H         LINE#         26
+  C:08B5H         LINE#         28
+  C:08B8H         LINE#         29
+  C:08BBH         LINE#         31
+  C:08BEH         LINE#         33
+  C:08BEH         LINE#         34
+  C:08BEH         LINE#         36
+  C:08C3H         LINE#         37
+  C:08C6H         LINE#         49
+  -------         ENDPROC       MAIN
+  -------         PROC          TT_DR_INIT
+  C:08D4H         LINE#         53
+  C:08D4H         LINE#         54
+  C:08D4H         LINE#         55
+  C:08D6H         LINE#         56
+  C:08D8H         LINE#         57
+  C:08DAH         LINE#         58
+  -------         ENDPROC       TT_DR_INIT
+  -------         PROC          TT_DR_ALLTTON
+  C:08DBH         LINE#         60
+  C:08DBH         LINE#         61
+  C:08DBH         LINE#         62
+  -------         ENDPROC       TT_DR_ALLTTON
+  -------         PROC          TT_DR_ALLTTOFF
+  C:08E0H         LINE#         65
+  C:08E0H         LINE#         66
+  C:08E0H         LINE#         67
+  -------         ENDPROC       TT_DR_ALLTTOFF
+  -------         PROC          _TT_DR_WRITE
+  D:0007H         SYMBOL        TTData
+  -------         DO            
+  D:0006H         SYMBOL        s1_i
+  -------         ENDDO         
+  C:0894H         LINE#         70
+  C:0894H         LINE#         71
+  C:0894H         LINE#         73
+  C:0896H         LINE#         74
+  C:0898H         LINE#         75
+  C:0898H         LINE#         76
+  C:08A5H         LINE#         77
+  C:08A7H         LINE#         78
+  C:08A9H         LINE#         79
+  C:08B2H         LINE#         80
+  C:08B4H         LINE#         81
+  -------         ENDPROC       _TT_DR_WRITE
+  -------         PROC          TT_DR_LIGHTSHOW
+  -------         DO            
+  D:0008H         SYMBOL        u1_i
+  D:0009H         SYMBOL        TTData
+  -------         ENDDO         
+  C:0800H         LINE#         83
+  C:0800H         LINE#         84
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/15/2021  18:32:24  PAGE 4
+
+
+  C:0800H         LINE#         87
+  C:0803H         LINE#         88
+  C:0806H         LINE#         89
+  C:0806H         LINE#         90
+  C:080AH         LINE#         91
+  C:080AH         LINE#         92
+  C:080DH         LINE#         93
+  C:0816H         LINE#         95
+  C:0819H         LINE#         96
+  C:081CH         LINE#         97
+  C:081CH         LINE#         98
+  C:0823H         LINE#         99
+  C:0827H         LINE#         100
+  C:082AH         LINE#         101
+  C:0833H         LINE#         103
+  C:0836H         LINE#         104
+  C:0839H         LINE#         105
+  C:0839H         LINE#         106
+  C:083BH         LINE#         107
+  C:083BH         LINE#         108
+  C:083EH         LINE#         109
+  C:0847H         LINE#         111
+  C:084AH         LINE#         112
+  C:084DH         LINE#         113
+  C:084DH         LINE#         114
+  C:0852H         LINE#         115
+  C:0856H         LINE#         116
+  C:0859H         LINE#         117
+  C:0862H         LINE#         118
+  -------         ENDPROC       TT_DR_LIGHTSHOW
+  C:086AH         SYMBOL        L?0033
+  C:086CH         SYMBOL        L?0034
+  -------         PROC          L?0032
+  -------         ENDPROC       L?0032
+  C:086AH         SYMBOL        L?0033
+  C:086CH         SYMBOL        L?0034
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        Delay_Time
+  -------         DO            
+  D:0004H         SYMBOL        count
+  -------         ENDDO         
+  C:0870H         LINE#         120
+  C:0870H         LINE#         121
+  C:0870H         LINE#         124
+  C:0873H         LINE#         126
+  C:087AH         LINE#         127
+  C:087AH         LINE#         128
+  C:087DH         LINE#         129
+  C:0880H         LINE#         130
+  C:0883H         LINE#         131
+  C:0885H         LINE#         132
+  C:0888H         LINE#         133
+  C:088AH         LINE#         134
+  C:088CH         LINE#         136
+  C:0891H         LINE#         137
+  C:0893H         LINE#         139
+  -------         ENDPROC       _DELAY
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/15/2021  18:32:24  PAGE 5
+
+
+  -------         ENDMOD        TELLTALE_DRIVER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TT_DR_ALLTTON?TELLTALE_DRIVER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TT_DR_ALLTTOFF?TELLTALE_DRIVER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TT_DR_LIGHTSHOW?TELLTALE_DRIVER
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00E8H BYTE (11%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=232
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

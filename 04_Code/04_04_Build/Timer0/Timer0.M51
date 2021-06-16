@@ -1,0 +1,112 @@
+BL51 BANKED LINKER/LOCATER V6.20                                                        06/15/2021  19:44:56  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.20, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE timer0.obj TO Timer0 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  timer0.obj (TIMER0)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ICALL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDXDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDPDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDCODE)
+
+
+LINK MAP OF MODULE:  Timer0 (TIMER0)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         ?DT?TIMER0
+            DATA    0013H     0003H     UNIT         _DATA_GROUP_
+            IDATA   0016H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     004DH     UNIT         ?C?LIB_CODE
+            CODE    08D9H     0032H     UNIT         ?PR?MAIN?TIMER0
+            CODE    090BH     0024H     UNIT         ?PR?_EVENT?TIMER0
+            CODE    092FH     0021H     UNIT         ?PR?TIMER0?TIMER0
+            CODE    0950H     000CH     UNIT         ?C_INITSEG
+            CODE    095CH     0003H     UNIT         ?PR?TASK_1?TIMER0
+            CODE    095FH     0003H     UNIT         ?PR?TASK_2?TIMER0
+            CODE    0962H     0003H     UNIT         ?PR?TASK_3?TIMER0
+
+
+
+OVERLAY MAP OF MODULE:   Timer0 (TIMER0)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?TIMER0
+  +--> ?C_INITSEG
+
+BL51 BANKED LINKER/LOCATER V6.20                                                      06/15/2021  19:44:56  PAGE 2
+
+
+?PR?MAIN?TIMER0                -----    -----
+  +--> ?PR?_EVENT?TIMER0
+
+?PR?_EVENT?TIMER0              0013H    0003H
+
+?C_INITSEG                     -----    -----
+  +--> ?PR?TASK_1?TIMER0
+  +--> ?PR?TASK_2?TIMER0
+  +--> ?PR?TASK_3?TIMER0
+
+
+
+SYMBOL TABLE OF MODULE:  Timer0 (TIMER0)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C?PLDPTR
+  C:088CH         PUBLIC        ?C?PLDPTR
+  -------         ENDMOD        ?C?PLDPTR
+
+  -------         MODULE        ?C?ICALL
+  C:08ACH         PUBLIC        ?C?ICALL
+  C:08B0H         PUBLIC        ?C?ICALL2
+  -------         ENDMOD        ?C?ICALL
+
+  -------         MODULE        ?C?PLDIDATA
+  C:08B2H         PUBLIC        ?C?PLDIDATA
+  -------         ENDMOD        ?C?PLDIDATA
+
+  -------         MODULE        ?C?PLDXDATA
+  C:08BBH         PUBLIC        ?C?PLDXDATA
+  -------         ENDMOD        ?C?PLDXDATA
+
+  -------         MODULE        ?C?PLDPDATA
+  C:08C4H         PUBLIC        ?C?PLDPDATA
+  -------         ENDMOD        ?C?PLDPDATA
+
+  -------         MODULE        ?C?PLDCODE
+  C:08CDH         PUBLIC        ?C?PLDCODE
+  -------         ENDMOD        ?C?PLDCODE
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 008EH BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=23.0 xdata=0 code=363
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

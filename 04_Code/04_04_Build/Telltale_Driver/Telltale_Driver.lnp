@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"Telltale_Driver.obj" 
+TO "Telltale_Driver" 
+RAMSIZE(256) 

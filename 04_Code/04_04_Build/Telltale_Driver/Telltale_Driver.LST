@@ -1,0 +1,166 @@
+C51 COMPILER V8.18   TELLTALE_DRIVER                                                       06/15/2021 18:32:24 PAGE 1   
+
+
+C51 COMPILER V8.18, COMPILATION OF MODULE TELLTALE_DRIVER
+OBJECT MODULE PLACED IN Telltale_Driver.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Telltale_Driver.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<t89c51rd2.h>
+   2          
+   3          typedef unsigned char   U1;
+   4          typedef unsigned short  U2;
+   5          typedef signed char             S1;             
+   6          
+   7          
+   8          #define D       P2_0
+   9          #define CLK P2_1
+  10          #define OE      P2_2
+  11          
+  12          #define HI 1
+  13          #define LO 0
+  14          #define U1_MAX (U1)0xFF
+  15          #define U1_MIN (U1)0x00
+  16          #define TT_LN   (U1)0X08
+  17          
+  18          static void delay(U2 Delay_Time);
+  19          static void TT_Dr_Init(void);
+  20          static void TT_Dr_Write(U1 TTData);
+  21          static void TT_Dr_allTTOn(void);
+  22          static void TT_Dr_allTTOff(void);
+  23          static void TT_Dr_Lightshow(void);
+  24          
+  25          void main(void)
+  26          {
+  27   1              U1 u1_Port;
+  28   1              P2=0x00; 
+  29   1              TT_Dr_Init();
+  30   1      
+  31   1              u1_Port = (U1)0xFF;
+  32   1      
+  33   1              while(1)
+  34   1              {
+  35   2      
+  36   2              TT_Dr_Write(P1);
+  37   2              delay((U2)0X0064);
+  38   2              /*
+  39   2              TT_Dr_allTTOn();
+  40   2              delay((U2)0X03E8);
+  41   2              TT_Dr_allTTOff();
+  42   2              delay((U2)0X03E8);
+  43   2              TT_Dr_Write((U1)0xAA);
+  44   2              delay((U2)0X03E8);
+  45   2              TT_Dr_Write((U1)0x55);
+  46   2              delay((U2)0X03E8);
+  47   2              TT_Dr_Lightshow();
+  48   2              */      
+  49   2              }       
+  50   1      }
+  51          
+  52          
+  53          static void TT_Dr_Init(void)
+  54          {
+  55   1              D       = HI;
+C51 COMPILER V8.18   TELLTALE_DRIVER                                                       06/15/2021 18:32:24 PAGE 2   
+
+  56   1              CLK = HI;
+  57   1              OE      = LO;
+  58   1      }
+  59          
+  60          static void TT_Dr_allTTOn(void)
+  61          {
+  62   1              TT_Dr_Write((U1)0x00);
+  63   1      }
+  64          
+  65          static void TT_Dr_allTTOff(void)
+  66          {
+  67   1              TT_Dr_Write((U1)0xFF);
+  68   1      }
+  69          
+  70          static void TT_Dr_Write(U1 TTData)
+  71          {
+  72   1              S1 s1_i;
+  73   1              OE=LO;
+  74   1              for(s1_i = (S1)7; s1_i >= (S1)0; s1_i--)
+  75   1              {
+  76   2                      D = (TTData>>s1_i)&(U1)0x01;
+  77   2                      CLK = LO;
+  78   2                      CLK = HI;
+  79   2              }
+  80   1              OE=HI;
+  81   1      }
+  82          
+  83          static void TT_Dr_Lightshow(void)
+  84          {
+  85   1              U1 u1_i;
+  86   1              U1 TTData;
+  87   1              TTData = (U1)0X01;
+  88   1              for(u1_i = (U1)0; u1_i <= TT_LN; u1_i++)
+  89   1              {
+  90   2                      TT_Dr_Write(TTData^(U1)0xFF);   
+  91   2                      TTData = TTData<<1;     
+  92   2                      delay((U2)0X0064);
+  93   2              }
+  94   1              
+  95   1              TTData = (U1)0X80;
+  96   1              for(u1_i = (U1)0; u1_i < TT_LN; u1_i++)
+  97   1              {
+  98   2                      TT_Dr_Write(TTData^(U1)0xFF);   
+  99   2                      TTData = TTData>>1;     
+ 100   2                      delay((U2)0X0064);
+ 101   2              }
+ 102   1      
+ 103   1              TTData = (U1)0X01;
+ 104   1              for(u1_i = (U1)0; u1_i < TT_LN; u1_i++)
+ 105   1              {
+ 106   2                      TT_Dr_Write(TTData);    
+ 107   2                      TTData = TTData<<1;     
+ 108   2                      delay((U2)0X0064);
+ 109   2              }
+ 110   1              
+ 111   1              TTData = (U1)0X80;
+ 112   1              for(u1_i = (U1)0; u1_i <= TT_LN; u1_i++)
+ 113   1              {
+ 114   2                      TT_Dr_Write(TTData);    
+ 115   2                      TTData = TTData>>1;     
+ 116   2                      delay((U2)0X0064);
+ 117   2              }
+C51 COMPILER V8.18   TELLTALE_DRIVER                                                       06/15/2021 18:32:24 PAGE 3   
+
+ 118   1      }
+ 119          
+ 120          static void delay(U2 Delay_Time)
+ 121          {
+ 122   1              U2 count;  
+ 123   1      
+ 124   1              count = (U2)0X0000;
+ 125   1      
+ 126   1                      while(count<=Delay_Time)
+ 127   1                      {
+ 128   2                      TMOD=0x01;  
+ 129   2                      TH0=0xFC; 
+ 130   2                      TL0=0x18; 
+ 131   2                      TR0=1;      // Running the timer
+ 132   2                      while(!TF0);   //Checking the timer flag register if it is not equal to 1 
+ 133   2                      TR0 = 0;      // If TF0=1 stop the timer
+ 134   2                      TF0 = 0;      // Clear the Timer Flag bit for next calculation
+ 135   2      
+ 136   2                      count++;
+ 137   2                      }
+ 138   1      
+ 139   1      }               
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    217    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

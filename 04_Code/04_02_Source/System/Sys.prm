@@ -1,0 +1,11 @@
+#include<Sys.h>
+
+#define CRY_FRQ		(U4)12000000
+#define DIVIDER		(U1)12
+#define TIMER_MAX	(U2)65536
+
+#define TIM_FRQ		(U2)(CRY_FRQ/DIVIDER)
+#define TIM_TIK		(U2)(1/TIM_FRQ)
+
+#define DLY_1MS		(U2)(TIMER_MAX-TIM_TIK)
+#define DLY_REQ
