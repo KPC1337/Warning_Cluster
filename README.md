@@ -1,2 +1,2 @@
 # Warning_Cluster
- Automotive industry embedded design internship
+ Source files for a vehicle warning cluster developed as part of an automotive industry embedded design internship.
